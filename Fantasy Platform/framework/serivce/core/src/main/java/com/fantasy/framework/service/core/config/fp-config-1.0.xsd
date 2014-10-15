@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/fp-config-1.0" xmlns:tns="http://www.example.org/fp-config-1.0" elementFormDefault="qualified">
+
+    <element name="service" type="tns:serviceType"></element>
+    
+    <complexType name="serviceType">
+    	<sequence>
+    		<element ref="tns:description" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="engine" type="string"></attribute>
+    	<attribute name="location" type="string"></attribute>
+    	<attribute name="invoke" type="string"></attribute>
+    </complexType>
+
+    <element name="description" type="string"></element>
+
+    <element name="attribute" type="tns:attributeType"></element>
+
+    <complexType name="attributeType"></complexType>
+</schema>
