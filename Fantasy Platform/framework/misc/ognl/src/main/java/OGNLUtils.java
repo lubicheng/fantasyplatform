@@ -1,15 +1,25 @@
+import org.apache.commons.collections.map.LRUMap;
+
 import ognl.Ognl;
 import ognl.OgnlException;
 
-
 public class OGNLUtils {
 
-	public static Object getValue(String expr) {
-		try {
-			Ognl.getValue("", "");
-		} catch (OgnlException e) { 
+	private static LRUMap cache = new LRUMap();
+
+	public static Object getValue(String expr, Object root)
+			throws OgnlException {
+
+		Object exprObject = cache.get("expr");
+
+		if (exprObject == null) {
+
+			exprObject = Ognl.parseExpression(expr);
+			
+			cache.put(expr, exprObject);
 		}
-		return expr;
-		
+
+		return Ognl.getValue(exprObject, root); 
+
 	}
 }
