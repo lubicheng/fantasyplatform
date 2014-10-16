@@ -1,3 +1,4 @@
+package com.fantasy.framework.misc.ognl;
 import org.apache.commons.collections.map.LRUMap;
 
 import ognl.Ognl;
