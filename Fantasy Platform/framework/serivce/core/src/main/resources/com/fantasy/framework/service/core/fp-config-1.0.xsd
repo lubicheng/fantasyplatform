@@ -5,7 +5,11 @@
     
     <complexType name="serviceType">
     	<sequence>
-    		<element ref="tns:description" minOccurs="0" maxOccurs="1"></element>
+    		<element ref="tns:description" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element ref="tns:flow" maxOccurs="1" minOccurs="0"></element>
+    		<element ref="tns:attribute" maxOccurs="unbounded" minOccurs="0"></element>
     	</sequence>
     	<attribute name="name" type="string"></attribute>
     	<attribute name="engine" type="string"></attribute>
@@ -17,5 +21,18 @@
 
     <element name="attribute" type="tns:attributeType"></element>
 
-    <complexType name="attributeType"></complexType>
+    <complexType name="attributeType">
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="type" type="string"></attribute>
+    	<attribute name="mode" type="string"></attribute>
+    	<attribute name="optional" type="string"></attribute>
+    </complexType>
+
+    <element name="flow" type="tns:flowType"></element>
+    
+    <complexType name="flowType">
+    	<sequence>
+    		<element ref="tns:service"></element>
+    	</sequence>
+    </complexType>
 </schema>
