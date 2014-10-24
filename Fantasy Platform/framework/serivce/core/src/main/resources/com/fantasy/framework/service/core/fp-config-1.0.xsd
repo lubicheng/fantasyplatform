@@ -1,38 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/fp-config-1.0" xmlns:tns="http://www.example.org/fp-config-1.0" elementFormDefault="qualified">
 
-    <element name="service" type="tns:serviceType"></element>
-    
-    <complexType name="serviceType">
-    	<sequence>
-    		<element ref="tns:description" minOccurs="0"
-    			maxOccurs="1">
-    		</element>
-    		<element ref="tns:flow" maxOccurs="1" minOccurs="0"></element>
-    		<element ref="tns:attribute" maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    	<attribute name="name" type="string"></attribute>
-    	<attribute name="engine" type="string"></attribute>
-    	<attribute name="location" type="string"></attribute>
-    	<attribute name="invoke" type="string"></attribute>
-    </complexType>
+	<element name="service" type="tns:serviceType"></element>
 
-    <element name="description" type="string"></element>
+	<complexType name="serviceType">
+		<sequence>
+			<element ref="tns:description" minOccurs="0" maxOccurs="1">
+			</element>
+			<element ref="tns:param" maxOccurs="unbounded" minOccurs="0"></element>
+			<element ref="tns:attribute" maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element ref="tns:flow" maxOccurs="1" minOccurs="0"></element>
+        </sequence>
+		<attribute name="name" type="string"></attribute>
+		<attribute name="engine" type="string"></attribute>
+		<attribute name="location" type="string" use="optional"></attribute>
+		<attribute name="invoke" type="string" use="optional"></attribute>
+	</complexType>
 
-    <element name="attribute" type="tns:attributeType"></element>
+	<element name="description" type="string"></element>
 
-    <complexType name="attributeType">
-    	<attribute name="name" type="string"></attribute>
-    	<attribute name="type" type="string"></attribute>
-    	<attribute name="mode" type="string"></attribute>
-    	<attribute name="optional" type="string"></attribute>
-    </complexType>
+	<element name="attribute" type="tns:attributeType"></element>
 
-    <element name="flow" type="tns:flowType"></element>
-    
-    <complexType name="flowType">
-    	<sequence>
-    		<element ref="tns:service"></element>
-    	</sequence>
-    </complexType>
+	<complexType name="attributeType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="displayName" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+		<attribute name="mode" type="string"></attribute>
+		<attribute name="optional" type="string"></attribute>
+	</complexType>
+
+	<element name="flow" type="tns:flowType"></element>
+
+	<complexType name="flowType">
+		<sequence>
+			<element ref="tns:invoke"></element>
+		</sequence>
+	</complexType>
+
+    <element name="param" type="tns:paramType"></element>
+
+	<complexType name="paramType">
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+	<element name="invoke" type="tns:invokeType"></element>
+
+	<complexType name="invokeType">
+		<sequence>
+		</sequence>
+		<attribute name="if" type="string"></attribute>
+		<attribute name="in" type="string"></attribute>
+		<attribute name="service" type="string"></attribute>
+		<attribute name="out" type="string"></attribute>
+	</complexType>
 </schema>
