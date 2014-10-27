@@ -1,5 +1,5 @@
 package com.fantasy.framework.service.core.internal;
 
-public class JavaEngine {
+public class FlowService {
 
 }
