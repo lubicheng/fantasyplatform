@@ -1,6 +1,6 @@
 package com.fantasy.framework.service.core.exception;
 
-public class FrameworkException extends Exception {
+public class FantasyException extends Exception {
 
 	/**
 	 * 
