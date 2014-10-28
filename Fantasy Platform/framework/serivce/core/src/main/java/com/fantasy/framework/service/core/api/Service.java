@@ -1,13 +1,18 @@
 package com.fantasy.framework.service.core.api;
 
-import com.fantasy.framework.service.core.exception.FrameworkException;
+import com.fantasy.framework.service.core.exception.FantasyException;
 
-public interface Service {
-	
-	String getName();
+
+public interface Service{
 	 
-	void invoke(Context context) throws FrameworkException;
+	String getName();
 	
-	void export(Context context) throws FrameworkException;
-
+	String getEngineName();
+	
+	String getLocationName();
+	
+	String getInvokeName();
+	
+	
+	   
 }
