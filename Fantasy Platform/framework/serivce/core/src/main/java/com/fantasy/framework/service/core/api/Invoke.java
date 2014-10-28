@@ -1,6 +1,6 @@
 package com.fantasy.framework.service.core.api;
 
-public interface Invoker {
+public interface Invoke {
 	
 	Service getService();
 	
@@ -9,7 +9,5 @@ public interface Invoker {
 	
 	Context<?> getStartContextSnapshot(); 
 	Context<?> getEndContextSnapshot(); 
-	
-	void invoke(Context<?> context);
-
+	 
 }

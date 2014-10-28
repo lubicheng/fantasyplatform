@@ -8,17 +8,17 @@ public interface Context<T> {
 	
 	CoreController getCoreController();
 	
-	Service getMainService(); 
+	Invoke getMainServiceInvoke(); 
 
-	Service getRunningService();
+	Invoke getRunningServiceInvoke();
 	
-	Stack<Invoker> getServiceInvokeStack();
+	Stack<Invoke> getServiceInvokeStack();
 	 
 	Throwable getRisedException();
 	
 	Locale getLocale(); 
 	
-	Map<String, Object> getSysPram();
+	Map<String, Object> getSysParam();
 	
 	T getData();
 	

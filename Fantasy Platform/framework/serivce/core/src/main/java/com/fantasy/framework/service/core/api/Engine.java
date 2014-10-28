@@ -6,6 +6,6 @@ public interface Engine {
 	
 	String getName();
 
-	void execute(Invoker invoke, Context<?> context) throws FantasyException;
+	void execute(Service service, Context<?> context) throws FantasyException;
 	
 }
