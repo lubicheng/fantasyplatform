@@ -8,20 +8,20 @@ public interface Context<T> {
 	
 	CoreController getCoreController();
 	
-	Service getMainService();
-	
-	Stack<ServiceInvoke> getServiceInvokeStack();
-	
+	Service getMainService(); 
+
 	Service getRunningService();
 	
+	Stack<Invoker> getServiceInvokeStack();
+	 
 	Throwable getRisedException();
 	
 	Locale getLocale(); 
 	
-	Map<String, Object> getSysData();
+	Map<String, Object> getSysPram();
 	
 	T getData();
 	
-	T setData(T d);
+	Context<T> clone();
 
 }

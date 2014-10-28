@@ -2,8 +2,10 @@ package com.fantasy.framework.service.core.api;
 
 import com.fantasy.framework.service.core.exception.FantasyException;
 
-public interface ServiceEngine {
+public interface Engine {
+	
+	String getName();
 
-	ServiceInvoke invoke(Service service, Context context) throws FantasyException;
+	void execute(Invoker invoke, Context<?> context) throws FantasyException;
 	
 }
