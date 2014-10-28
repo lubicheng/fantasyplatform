@@ -4,6 +4,6 @@
   <artifactId>fantasy-framework-misc</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Fantasy Framework Service</name>
+  <name>Fantasy Framework Misc</name>
   <build/>
 </project>
