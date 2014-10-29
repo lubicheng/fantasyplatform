@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/fp-config-1.0" xmlns:tns="http://www.example.org/fp-config-1.0" elementFormDefault="qualified">
+<schema targetNamespace="http://www.fantasy.com/fp/service" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fantasy="http://www.fantasy.com/fp/service">
 
-	<element name="service" type="tns:serviceType"></element>
+	<element name="service" type="fantasy:serviceType"></element>
 
 	<complexType name="serviceType">
 		<sequence>
-			<element ref="tns:description" minOccurs="0" maxOccurs="1"></element>
-			<element ref="tns:setting" maxOccurs="unbounded" minOccurs="0"></element>
-			<element ref="tns:attribute" maxOccurs="unbounded" minOccurs="0"></element>
+			<element ref="fantasy:description" minOccurs="0" maxOccurs="1"></element>
+			<element ref="fantasy:setting" maxOccurs="unbounded" minOccurs="0"></element>
+			<element ref="fantasy:attribute" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="name" type="string"></attribute>
 		<attribute name="engine" type="string"></attribute>
@@ -18,7 +18,7 @@
 
 	<element name="description" type="string"></element>
 
-	<element name="attribute" type="tns:attributeType"></element>
+	<element name="attribute" type="fantasy:attributeType"></element>
 
 	<complexType name="attributeType">
 		<attribute name="name" type="string"></attribute>
@@ -30,13 +30,13 @@
 
 
 
-    <element name="param" type="tns:paramType"></element>
+    <element name="param" type="fantasy:paramType"></element>
 
 	<complexType name="paramType">
 		<attribute name="name" type="string"></attribute>
 	</complexType>
 
-	<element name="invoke" type="tns:invokeType"></element>
+	<element name="invoke" type="fantasy:invokeType"></element>
 
 	<complexType name="invokeType">
 		<sequence>
@@ -47,11 +47,11 @@
 		<attribute name="out" type="string"></attribute>
 	</complexType>
 
-	<element name="setting" type="tns:settingType"></element>
+	<element name="setting" type="fantasy:settingType"></element>
 
 	<complexType name="settingType">
 		<sequence>
-			<element ref="tns:param" maxOccurs="unbounded" minOccurs="0"></element>
+			<element ref="fantasy:param" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 </schema>
