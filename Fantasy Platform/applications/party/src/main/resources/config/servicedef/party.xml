@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fantasy="http://www.example.org/fp-config-1.0"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.example.org/fp-config-1.0 http://www.fantasy.com/schema/fantasy/fpf-service-config.xsd">
+
+	<fantasy:service name="createPart">
+		<fantasy:description>create Part</fantasy:description>
+	</fantasy:service>
+	
+	<
+</beans>
