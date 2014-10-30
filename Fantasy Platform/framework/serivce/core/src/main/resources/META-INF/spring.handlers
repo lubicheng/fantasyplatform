@@ -1,1 +1,1 @@
-http\://www.fantasy.com/schema/fantasy=org.springframework.jdbc.config.JdbcNamespaceHandler
+http\://www.fantasy.com/schema/fantasy/fantasy-service=com.fantasy.framework.service.core.config.FantasyNamespaceHandlerSupport
