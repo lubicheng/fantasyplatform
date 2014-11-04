@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.fantasy.com/fp/service" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fantasy="http://www.fantasy.com/fp/service">
+<schema targetNamespace="http://www.fantasy.com/fp/service" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fantasy="http://www.fantasy.com/fp/service" xmlns:beans="http://www.springframework.org/schema/beans">
 
+	<import schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" namespace="http://www.springframework.org/schema/beans"></import>
 	<element name="service" type="fantasy:serviceType"></element>
 
 	<complexType name="serviceType">
 		<sequence>
-			<element ref="fantasy:description" minOccurs="0" maxOccurs="1"></element>
-			<element ref="fantasy:setting" maxOccurs="unbounded" minOccurs="0"></element>
-			<element ref="fantasy:attribute" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="description" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="setting" type="fantasy:settingType" maxOccurs="1" minOccurs="0"></element>
+			<element name="attribute" type="fantasy:attributeType" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="name" type="string"></attribute>
 		<attribute name="engine" type="string"></attribute>
@@ -16,11 +17,12 @@
 		<attribute name="export" type="string"></attribute>
 	</complexType>
 
-	<element name="description" type="string"></element>
 
-	<element name="attribute" type="fantasy:attributeType"></element>
 
 	<complexType name="attributeType">
+		<sequence>
+			<element name="attribute" type="fantasy:attributeType" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
 		<attribute name="name" type="string"></attribute>
 		<attribute name="displayName" type="string"></attribute>
 		<attribute name="type" type="string"></attribute>
@@ -30,28 +32,17 @@
 
 
 
-    <element name="param" type="fantasy:paramType"></element>
 
 	<complexType name="paramType">
 		<attribute name="name" type="string"></attribute>
 	</complexType>
 
-	<element name="invoke" type="fantasy:invokeType"></element>
 
-	<complexType name="invokeType">
-		<sequence>
-		</sequence>
-		<attribute name="if" type="string"></attribute>
-		<attribute name="in" type="string"></attribute>
-		<attribute name="service" type="string"></attribute>
-		<attribute name="out" type="string"></attribute>
-	</complexType>
 
-	<element name="setting" type="fantasy:settingType"></element>
 
 	<complexType name="settingType">
 		<sequence>
-			<element ref="fantasy:param" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="param" type="fantasy:paramType" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 </schema>
