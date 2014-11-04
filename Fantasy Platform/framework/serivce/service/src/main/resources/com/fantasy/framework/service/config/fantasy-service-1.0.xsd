@@ -8,7 +8,8 @@
 		<sequence>
 			<element name="description" type="string" maxOccurs="1" minOccurs="0"></element>
 			<element name="setting" type="fantasy:settingType" maxOccurs="1" minOccurs="0"></element>
-			<element name="attribute" type="fantasy:attributeType" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="auto-attributes" type="fantasy:autoAttributesType" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="attribute" type="fantasy:attributeType" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="name" type="string"></attribute>
 		<attribute name="engine" type="string"></attribute>
@@ -22,6 +23,7 @@
 	<complexType name="attributeType">
 		<sequence>
 			<element name="attribute" type="fantasy:attributeType" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="auto-attributes" type="fantasy:autoAttributesType" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="name" type="string"></attribute>
 		<attribute name="displayName" type="string"></attribute>
@@ -44,5 +46,30 @@
 		<sequence>
 			<element name="param" type="fantasy:paramType" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
+	</complexType>
+
+	<complexType name="autoAttributesType">
+		<sequence>
+			<element name="exclude" type="fantasy:excludeType"></element>
+			<element name="override" type="fantasy:overrideType"></element>
+		</sequence>
+		<attribute name="entity-name" type="string"></attribute>
+		<attribute name="include" type="string"></attribute>
+		<attribute name="mode" type="string"></attribute>
+		<attribute name="optional" type="string"></attribute>
+	</complexType>
+
+	<complexType name="excludeType">
+		<attribute name="field-name" type="string"></attribute>
+	</complexType>
+
+
+	<complexType name="overrideType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="displayName" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+		<attribute name="mode" type="string"></attribute>
+		<attribute name="optional" type="string"></attribute>
+		<attribute name="default-value" type="string"></attribute>
 	</complexType>
 </schema>
