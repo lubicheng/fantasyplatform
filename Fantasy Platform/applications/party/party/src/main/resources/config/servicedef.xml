@@ -7,7 +7,17 @@
 
 	<service name="deleteParty" engine="java" location="org.ofbiz.party.party.PartyServices" invoke="deleteParty">
 		<description>Delete a Party</description>
-		<attribute name="partyId" type="String" mode="IN" optional="true" />
+		<setting>
+			<param name="aaa">cmbc</param>
+		</setting>
+		<fields default-entity-name="Party">
+			<field name="partyId" type="String" mode="IN" optional="true" />
+			 <field name="cif" type="Map" mode="IN" optional="true" >
+			 		
+			 </field>
+		</fields>
+		
+	 	<ref
 	</service>
 
 	<service name="createPerson" engine="java" default-entity-name="Person" location="org.ofbiz.party.party.PartyServices" invoke="createPerson" auth="false">
