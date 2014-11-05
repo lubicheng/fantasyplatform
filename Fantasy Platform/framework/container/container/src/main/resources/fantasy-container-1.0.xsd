@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fantasy.com/fp/container" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fantasy="http://www.fantasy.com/fp/container" xmlns:beans="http://www.springframework.org/schema/beans">
+
+	<import schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" namespace="http://www.springframework.org/schema/beans"></import>
+	<element name="container" type="fantasy:containerType"></element>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<complexType name="containerType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+	</complexType>
+
+    <element name="ref-container" type="string"></element>
+</schema>
