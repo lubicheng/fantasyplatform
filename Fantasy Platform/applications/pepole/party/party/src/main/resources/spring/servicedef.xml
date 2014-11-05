@@ -3,26 +3,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.fantasy.com/fp/service http://www.fantasy.com/schema/fantasy/fantasy-service.xsd">
 
-
-
-	<service name="deleteParty" engine="java" location="org.ofbiz.party.party.PartyServices" invoke="deleteParty">
+  <services app-name="party" group-name='Party' >
+  	<service name="deleteParty" engine="java" location="org.ofbiz.party.party.PartyServices" invoke="deleteParty">
 		<description>Delete a Party</description>
 		<setting>
 			<param name="aaa">cmbc</param>
 		</setting>
-		<fields default-entity-name="Party">
-			<field name="partyId" type="String" mode="IN" optional="true" />
-			 <field name="cif" type="Map" mode="IN" optional="true" >
-			 		
-			 </field>
-		</fields>
-		
-	 	<ref
+	 	
 	</service>
 
 	<service name="createPerson" engine="java" default-entity-name="Person" location="org.ofbiz.party.party.PartyServices" invoke="createPerson" auth="false">
 		<description>Create a Person</description>
-		<auto-attributes mode="IN" include="pk" optional="true" />
+		 
+		<auto-attributes entity-name="Person" mode="IN" include="pk" optional="true" />
 		<auto-attributes mode="OUT" include="pk" optional="false" />
 		<auto-attributes mode="IN" include="nonpk" optional="true" />
 		<attribute name="preferredCurrencyUomId" type="String" mode="IN" optional="true" />
@@ -32,4 +25,6 @@
 		<!-- First and Last names are here optional. This allows to implement simple create user login screen where user is able create account in system with username and password and then later populate rest of the account information. -->
 		<!-- <override name="firstName" optional="false"/> <override name="lastName" optional="false"/> -->
 	</service>
+  </services>
+
 </spring:beans>
