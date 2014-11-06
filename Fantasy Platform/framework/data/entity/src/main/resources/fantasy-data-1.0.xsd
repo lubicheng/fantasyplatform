@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fantasy.com/fp/data" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fantasy="http://www.fantasy.com/fp/data" xmlns:beans="http://www.springframework.org/schema/beans">
+
+	<import schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" namespace="http://www.springframework.org/schema/beans"></import>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <element name="entitymodel" type="string"></element>
+
+    <element name="entity" type="fantasy:entityType"></element>
+    
+    <complexType name="entityType">
+    	<sequence>
+    		<element name="field" type="string"></element>
+    		<element name="prim-key" type="string"></element>
+    		<element name="relation" type="string"></element>
+    	</sequence>
+    	<attribute name="entity-name" type="string"></attribute>
+    	<attribute name="title" type="string"></attribute>
+    </complexType>
+
+    <element name="extend-entity" type="string"></element>
+
+    <element name="fieldtype" type="string"></element>
+
+    <element name="view-entity" type="string"></element>
+</schema>
