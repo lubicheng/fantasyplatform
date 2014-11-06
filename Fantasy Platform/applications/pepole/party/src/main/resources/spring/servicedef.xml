@@ -3,13 +3,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.fantasy.com/fp/service http://www.fantasy.com/schema/fantasy/fantasy-service.xsd">
 
-  <services app-name="party" group-name='Party' >
+  <services application-name="party" group-name='Party Manager Group' >
   	<service name="deleteParty" engine="java" location="org.ofbiz.party.party.PartyServices" invoke="deleteParty">
 		<description>Delete a Party</description>
 		<setting>
 			<param name="aaa">cmbc</param>
-		</setting>
-	 	
+		</setting> 
 	</service>
 
 	<service name="createPerson" engine="java" default-entity-name="Person" location="org.ofbiz.party.party.PartyServices" invoke="createPerson" auth="false">
