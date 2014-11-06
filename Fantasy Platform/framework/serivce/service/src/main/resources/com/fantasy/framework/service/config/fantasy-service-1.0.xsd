@@ -72,4 +72,17 @@
 		<attribute name="optional" type="string"></attribute>
 		<attribute name="default-value" type="string"></attribute>
 	</complexType>
+
+    <element name="ref-service" type="string"></element>
+
+    <element name="services" type="fantasy:servicesType"></element>
+    
+    <complexType name="servicesType">
+    	<sequence>
+    		<element ref="fantasy:ref-service"></element>
+    		<element ref="fantasy:service"></element>
+    	</sequence>
+    	<attribute name="application-name" type="string"></attribute>
+    	<attribute name="group-name" type="string"></attribute>
+    </complexType>
 </schema>
