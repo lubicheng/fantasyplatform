@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+  <!-- ========================================================= -->
+  <!-- ======================== Defaults ======================= -->
+  <!-- ========================================================= -->
+    <title>Entity of an Open For Business Project Component</title>
+    <description>None</description>
+    <version>1.0</version>
+
+  <!-- ========================================================= -->
+ 
+    <entity entity-name="Agreement"
+            package-name="org.ofbiz.party.agreement"
+            title="Agreement Entity">
+      <field name="agreementId" type="id-ne"></field>
+      <field name="productId" type="id"></field>
+      <field name="partyIdFrom" type="id"></field>
+      <field name="partyIdTo" type="id"></field>
+      <field name="roleTypeIdFrom" type="id"></field>
+      <field name="roleTypeIdTo" type="id"></field>
+      <field name="agreementTypeId" type="id"></field>
+      <field name="agreementDate" type="date-time"></field>
+      <field name="fromDate" type="date-time"></field>
+      <field name="thruDate" type="date-time"></field>
+      <field name="description" type="description"></field>
+      <field name="textData" type="very-long"></field>
+      <prim-key field="agreementId"/>
+      <relation type="one" fk-name="AGRMNT_PRODUCT" rel-entity-name="Product">
+        <key-map field-name="productId"/>
+      </relation>
+      <relation type="one-nofk" title="From" rel-entity-name="Party">
+        <key-map field-name="partyIdFrom" rel-field-name="partyId"/>
+      </relation>
+      <relation type="one-nofk" title="From" rel-entity-name="RoleType">
+        <key-map field-name="roleTypeIdFrom" rel-field-name="roleTypeId"/>
+      </relation>
+      <relation type="one" fk-name="AGRMNT_FPRTYRLE" title="From" rel-entity-name="PartyRole">
+        <key-map field-name="partyIdFrom" rel-field-name="partyId"/>
+        <key-map field-name="roleTypeIdFrom" rel-field-name="roleTypeId"/>
+      </relation>
+      <relation type="one-nofk" title="To" rel-entity-name="Party">
+        <key-map field-name="partyIdTo" rel-field-name="partyId"/>
+      </relation>
+      <relation type="one-nofk" title="To" rel-entity-name="RoleType">
+        <key-map field-name="roleTypeIdTo" rel-field-name="roleTypeId"/>
+      </relation>
+      <relation type="one" fk-name="AGRMNT_TPRTYRLE" title="To" rel-entity-name="PartyRole">
+        <key-map field-name="partyIdTo" rel-field-name="partyId"/>
+        <key-map field-name="roleTypeIdTo" rel-field-name="roleTypeId"/>
+      </relation>
+      <relation type="many" rel-entity-name="PartyRelationship">
+        <key-map field-name="roleTypeIdFrom"/>
+        <key-map field-name="roleTypeIdTo"/>
+        <key-map field-name="partyIdFrom"/>
+        <key-map field-name="partyIdTo"/>
+      </relation>
+      <relation type="one" fk-name="AGRMNT_TYPE" rel-entity-name="AgreementType">
+        <key-map field-name="agreementTypeId"/>
+      </relation>
+      <relation type="many" rel-entity-name="AgreementTypeAttr">
+        <key-map field-name="agreementTypeId"/>
+      </relation>
+    </entity>
+    <entity entity-name="AgreementAttribute"
+            package-name="org.ofbiz.party.agreement"
+            title="Agreement Attribute Entity">
+      <field name="agreementId" type="id-ne"></field>
+      <field name="attrName" type="id-long-ne"></field>
+      <field name="attrValue" type="value"></field>
+      <prim-key field="agreementId"/>
+      <prim-key field="attrName"/>
+      <relation type="one" fk-name="AGRMNT_ATTR" rel-entity-name="Agreement">
+        <key-map field-name="agreementId"/>
+      </relation>
+      <relation type="many" rel-entity-name="AgreementTypeAttr">
+        <key-map field-name="attrName"/>
+      </relation>
+    </entity>
+     
+    <entity entity-name="PriorityType"
+            package-name="org.ofbiz.party.party"
+            title="Priority Type Entity">
+      <field name="priorityTypeId" type="id-ne"></field>
+      <field name="description" type="description"></field>
+      <prim-key field="priorityTypeId"/>
+    </entity>
+    <entity entity-name="RoleType"
+            package-name="org.ofbiz.party.party"
+            default-resource-name="PartyEntityLabels"
+            title="Role Type Entity">
+      <field name="roleTypeId" type="id-ne"></field>
+      <field name="parentTypeId" type="id"></field>
+      <field name="hasTable" type="indicator"></field>
+      <field name="description" type="description"></field>
+      <prim-key field="roleTypeId"/>
+      <relation type="one" fk-name="ROLE_TYPE_PAR" title="Parent" rel-entity-name="RoleType">
+        <key-map field-name="parentTypeId" rel-field-name="roleTypeId"/>
+      </relation>
+    </entity>
+    <view-entity entity-name="RoleTypeIn3Levels"
+        package-name="org.ofbiz.party.party" title="Party Role View in 4 levels">
+        <member-entity entity-alias="RT1" entity-name="RoleType" />
+        <member-entity entity-alias="RT2" entity-name="RoleType" />
+        <member-entity entity-alias="RT3" entity-name="RoleType" />
+        <alias entity-alias="RT1" name="topRoleTypeId" field="roleTypeId" />
+        <alias entity-alias="RT1" name="topDescription" field="description" />
+        <alias entity-alias="RT2" name="midRoleTypeId" field="roleTypeId" />
+        <alias entity-alias="RT2" name="midDescription" field="description" />
+        <alias entity-alias="RT3" name="lowRoleTypeId" field="roleTypeId" />
+        <alias entity-alias="RT3" name="lowDescription" field="description" />
+        <view-link entity-alias="RT1" rel-entity-alias="RT2" rel-optional="true">
+            <key-map field-name="roleTypeId" rel-field-name="parentTypeId"/>
+        </view-link>
+        <view-link entity-alias="RT2" rel-entity-alias="RT3" rel-optional="true">
+            <key-map field-name="roleTypeId" rel-field-name="parentTypeId"/>
+        </view-link>
+    </view-entity>
+    <view-entity entity-name="RoleTypeAndParty"
+            package-name="org.ofbiz.party.party"
+            title="Party Role View Entity">
+      <member-entity entity-alias="PR" entity-name="PartyRole"/>
+      <member-entity entity-alias="RT" entity-name="RoleType"/>
+      <alias entity-alias="PR" name="partyId"/>
+      <alias entity-alias="RT" name="roleTypeId"/>
+      <alias entity-alias="RT" name="parentTypeId"/>
+      <alias entity-alias="RT" name="description"/>
+      <view-link entity-alias="RT" rel-entity-alias="PR">
+        <key-map field-name="roleTypeId"/>
+      </view-link>
+    </view-entity>
+    <entity entity-name="RoleTypeAttr"
+            package-name="org.ofbiz.party.party"
+            title="Role Type Attribute Entity">
+      <field name="roleTypeId" type="id-ne"></field>
+      <field name="attrName" type="id-long-ne"></field>
+      <prim-key field="roleTypeId"/>
+      <prim-key field="attrName"/>
+      <relation type="one" fk-name="ROLE_TYPATR_RTYP" rel-entity-name="RoleType">
+        <key-map field-name="roleTypeId"/>
+      </relation>
+      <relation type="many" rel-entity-name="PartyAttribute">
+        <key-map field-name="attrName"/>
+      </relation>
+      <relation type="many" rel-entity-name="PartyRole">
+        <key-map field-name="roleTypeId"/>
+      </relation>
+      <relation type="many" title="ValidFrom" rel-entity-name="PartyRelationshipType">
+        <key-map field-name="roleTypeId" rel-field-name="roleTypeIdValidFrom"/>
+      </relation>
+      <relation type="many" title="ValidTo" rel-entity-name="PartyRelationshipType">
+        <key-map field-name="roleTypeId" rel-field-name="roleTypeIdValidTo"/>
+      </relation>
+    </entity>
+    <entity entity-name="Vendor"
+            package-name="org.ofbiz.party.party"
+            title="Vendor Entity">
+      <field name="partyId" type="id-ne"></field>
+      <field name="manifestCompanyName" type="name"></field>
+      <field name="manifestCompanyTitle" type="name"></field>
+      <field name="manifestLogoUrl" type="url"></field>
+      <field name="manifestPolicies" type="very-long"></field>
+      <prim-key field="partyId"/>
+      <relation type="one" fk-name="VENDOR_PARTY" rel-entity-name="Party">
+        <key-map field-name="partyId"/>
+      </relation>
+    </entity>
+    <extend-entity entity-name="CustomTimePeriod">
+        <field name="organizationPartyId" type="id"></field>
+        <relation type="one" fk-name="ORG_PRD_PARTY" title="Organization" rel-entity-name="Party">
+            <key-map field-name="organizationPartyId" rel-field-name="partyId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="NoteData">
+        <field name="noteParty" type="id"></field>
+        <relation type="one" fk-name="NOTE_DATA_PTY" title="Note" rel-entity-name="Party">
+            <key-map field-name="noteParty" rel-field-name="partyId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="ServerHit">
+        <field name="internalContentId" type="id"></field>
+        <field name="partyId" type="id"></field>
+        <field name="idByIpContactMechId" type="id"></field>
+        <field name="refByWebContactMechId" type="id"></field>
+        <relation type="one" fk-name="SERVER_HIT_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="one" fk-name="SERVER_HIT_IDBYIP" title="IdByIp" rel-entity-name="ContactMech">
+            <key-map field-name="idByIpContactMechId" rel-field-name="contactMechId"/>
+        </relation>
+        <relation type="one" fk-name="SERVER_HIT_REFWEB" title="RefByWeb" rel-entity-name="ContactMech">
+            <key-map field-name="refByWebContactMechId" rel-field-name="contactMechId"/>
+        </relation>
+        <relation type="one" fk-name="SERVER_HIT_CNT" rel-entity-name="Content">
+            <key-map field-name="internalContentId" rel-field-name="contentId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="ServerHitBin">
+        <field name="internalContentId" type="id"></field>
+        <relation type="one" fk-name="SERVER_HBIN_CNT" rel-entity-name="Content">
+            <key-map field-name="internalContentId" rel-field-name="contentId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="Visit">
+        <field name="contactMechId" type="id"></field>
+        <field name="partyId" type="id"></field>
+        <field name="roleTypeId" type="id"></field>
+        <relation type="one" fk-name="VISIT_CONT_MECH" rel-entity-name="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relation>
+        <relation type="one" fk-name="VISIT_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="one" fk-name="VISIT_ROLE_TYPE" rel-entity-name="RoleType">
+            <key-map field-name="roleTypeId"/>
+        </relation>
+        <relation type="one" fk-name="VISIT_PARTY_ROLE" rel-entity-name="PartyRole">
+            <key-map field-name="partyId"/>
+            <key-map field-name="roleTypeId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="Visitor">
+        <field name="partyId" type="id"></field>
+        <relation type="one" fk-name="VISITOR_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="UserLogin">
+        <field name="partyId" type="id"></field>
+        <relation type="one" fk-name="USER_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="one-nofk" rel-entity-name="Person">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="one-nofk" rel-entity-name="PartyGroup">
+            <key-map field-name="partyId"/>
+        </relation>
+    </extend-entity>
+    <extend-entity entity-name="UserLoginHistory">
+        <field name="partyId" type="id"></field>
+        <relation type="one" fk-name="USER_LH_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+    </extend-entity>
+</entitymodel>
