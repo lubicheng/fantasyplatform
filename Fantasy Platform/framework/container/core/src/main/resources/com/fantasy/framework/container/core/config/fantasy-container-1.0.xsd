@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.fantasy.com/fp/container" elementFormDefault="qualified" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fantasy.com/fp/container">
+
+	<xsd:import schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" namespace="http://www.springframework.org/schema/beans"></xsd:import>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<xsd:complexType name="containerType">
+		<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+		<xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+
+    <xsd:element name="containers" type="containersType"></xsd:element>
+    
+    <xsd:complexType name="containersType">
+    	<xsd:sequence>
+    		<xsd:element name="container" type="containerType"></xsd:element>
+    		<xsd:element name="ref-container" type="xsd:string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="container" type="containerType"></xsd:element>
+
+    <xsd:element name="ref-container" type="xsd:string"></xsd:element>
+</xsd:schema>
